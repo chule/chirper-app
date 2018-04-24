@@ -1,8 +1,8 @@
-import { RECIVE_USER } from "./actions/users.js"
+import { RECIVE_USERS } from "../actions/users.js"
 
 export default function users(state = {}, action) {
     switch (action.type) {
-        case RECIVE_USER:
+        case RECIVE_USERS:
             return {
                 ...state,
                 ...action.users
