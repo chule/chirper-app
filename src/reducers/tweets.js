@@ -1,6 +1,6 @@
 import { RECIVE_TWEETS } from "../actions/tweets.js"
 
-export default function tweets(state = {}, action) {
+const tweets = (state = {}, action) => {
     switch (action.type) {
         case RECIVE_TWEETS:
             return {
@@ -11,3 +11,5 @@ export default function tweets(state = {}, action) {
             return state
     }
 }
+
+export default tweets
