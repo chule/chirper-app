@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from "react-redux"
 import { handleInitialData } from "../actions/shared"
 import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import NewTweet from './NewTweet'
-import Tweetpage from './TweetPage'
+import TweetPage from './TweetPage'
+import Nav from './Nav'
+
 
 class App extends Component {
 
@@ -13,18 +16,23 @@ class App extends Component {
   }
 
   render() {
-
-    console.log(this.props)
     return (
-      <div>
-        <LoadingBar />
-        {this.props.loading
-          ? null
-          : <Tweetpage match={{params: {id: "2mb6re13q842wu8n106bhk"}}} />
-          // : <Dashboard />
-        }
-
-      </div>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className='container'>
+            <Nav />
+            {this.props.loading
+              ? null
+              : <div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/tweet/:id' component={TweetPage} />
+                <Route path='/new' component={NewTweet} />
+              </div>
+            }
+          </div>
+        </Fragment>
+      </Router>
     )
   }
 }
